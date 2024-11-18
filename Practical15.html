@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday CountDown</title>
+    <style>
+        body {
+            background-image: url('bim.avif');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.5); 
+            padding: 30px;
+            border-radius: 10px;
+            width: 500px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        input[type="date"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 2px solid #fff;
+            background-color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            margin-bottom: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button:active {
+            background-color: #397e35;
+        }
+
+        .Days {
+            margin-top: 20px;
+            font-size: 30px;  /* Increased font size */
+            color: #ffeb3b;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        input[type="date"]:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Birthday Countdown</h1>
+        <label for="bdate">Birthday Date</label>
+        <input type="date" name="bdate" id="bdate">
+        <button onclick="countDown()">Submit</button>
+        <div class="Days"></div>  <!-- Added a container for the countdown result -->
+    </div>
+
+    <script>
+        function countDown() {
+            let bdate = document.querySelector('#bdate').value;
+            let provideDate = new Date(bdate); // User's provided birthday date
+            let date = new Date();  // Current date
+            let diffDate = date - provideDate; // Difference in milliseconds
+
+            let dayCount = Math.floor(diffDate / (1000 * 60 * 60 * 24)); 
+            let days = document.querySelector('.Days');
+            days.innerHTML = `The number of days Between current date and your birthday is ${dayCount} Days.`;
+        }
+    </script>
+</body>
+</html>
